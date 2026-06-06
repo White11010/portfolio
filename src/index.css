@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-sans text-base;
+  }
+
+  .dark body {
+    @apply bg-bg-dark text-text-primary-dark;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  a {
+    @apply transition-colors duration-200 ease-out;
+  }
+}
+
+@layer components {
+  .tag {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-tag text-xs font-medium
+           bg-accent-light text-accent
+           dark:bg-accent-dark-surface dark:text-accent-border;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-5 py-3 rounded-tag font-medium text-white
+           bg-accent hover:bg-accent/90 transition-all duration-200 ease-out
+           min-h-[44px];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-5 py-3 rounded-tag font-medium
+           border border-accent-border text-accent
+           hover:bg-accent-light dark:border-accent-dark dark:text-accent-border
+           dark:hover:bg-accent-dark-surface
+           transition-all duration-200 ease-out min-h-[44px];
+  }
+
+  .card {
+    @apply bg-surface border border-border rounded-card p-5
+           dark:bg-surface-dark dark:border-border-dark
+           transition-all duration-200 ease-out
+           hover:-translate-y-0.5 hover:border-accent-border dark:hover:border-accent-dark;
+  }
+
+  .link-accent {
+    @apply text-accent dark:text-accent-border hover:underline underline-offset-2;
+  }
+
+  .prose-custom h2 {
+    @apply text-2xl font-semibold mt-10 mb-4 text-text-primary dark:text-text-primary-dark;
+  }
+
+  .prose-custom h3 {
+    @apply text-xl font-semibold mt-8 mb-3 text-text-primary dark:text-text-primary-dark;
+  }
+
+  .prose-custom p {
+    @apply mb-5 leading-relaxed;
+  }
+
+  .prose-custom ul, .prose-custom ol {
+    @apply mb-5 pl-6 space-y-2;
+  }
+
+  .prose-custom li {
+    @apply leading-relaxed;
+  }
+
+  .prose-custom ul li {
+    @apply list-disc;
+  }
+
+  .prose-custom ol li {
+    @apply list-decimal;
+  }
+
+  .prose-custom code {
+    @apply font-mono text-sm px-1.5 py-0.5 rounded bg-accent-light text-accent
+           dark:bg-accent-dark-surface dark:text-accent-border;
+  }
+
+  .prose-custom pre {
+    @apply relative mb-6 rounded-card overflow-hidden;
+  }
+
+  .prose-custom pre code {
+    @apply block p-4 bg-code-bg text-gray-200 text-sm leading-relaxed
+           px-4 py-4 rounded-card;
+  }
+
+  .prose-custom blockquote {
+    @apply border-l-[3px] border-accent dark:border-accent-dark pl-4 py-1 my-5
+           bg-accent-light/50 dark:bg-accent-dark-surface/50 rounded-r-tag;
+  }
+
+  .prose-custom a {
+    @apply link-accent;
+  }
+
+  .prose-custom hr {
+    @apply border-border dark:border-border-dark my-8;
+  }
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.dot-grid {
+  background-image: radial-gradient(circle, #7C52E0 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.08;
+}
+
+.dark .dot-grid {
+  opacity: 0.05;
+}
