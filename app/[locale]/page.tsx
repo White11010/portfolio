@@ -95,7 +95,7 @@ export default async function HomePage({ params }: PageProps) {
           </h2>
           <div className="flex items-center justify-center gap-5">
             <a
-              href="https://t.me/alexivanov"
+              href="https://t.me/wh1te26"
               target="_blank"
               rel="noopener noreferrer"
               className="touch-target rounded-full border border-border dark:border-border-dark text-text-secondary dark:text-text-secondary-dark hover:border-accent-border dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-border transition-all duration-200"
@@ -104,14 +104,14 @@ export default async function HomePage({ params }: PageProps) {
               <Send size={20} />
             </a>
             <a
-              href="mailto:alex@ivanov.dev"
+              href="mailto:beliavski26@gmail.com"
               className="touch-target rounded-full border border-border dark:border-border-dark text-text-secondary dark:text-text-secondary-dark hover:border-accent-border dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-border transition-all duration-200"
               aria-label="Email"
             >
               <Mail size={20} />
             </a>
             <a
-              href="https://github.com/alexivanov"
+              href="https://github.com/white11010"
               target="_blank"
               rel="noopener noreferrer"
               className="touch-target rounded-full border border-border dark:border-border-dark text-text-secondary dark:text-text-secondary-dark hover:border-accent-border dark:hover:border-accent-dark hover:text-accent dark:hover:text-accent-border transition-all duration-200"

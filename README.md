@@ -1,4 +1,4 @@
-# Portfolio — Alex Ivanov
+# Portfolio — Vladislav Belyavsky
 
 Personal portfolio and blog built with Next.js, TypeScript, and Tailwind CSS.
 

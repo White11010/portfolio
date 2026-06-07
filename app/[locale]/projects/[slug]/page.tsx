@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = pick(project.description, locale as Locale);
 
   return {
-    title: `${title} — Alex Ivanov`,
+    title: `${title} — Vladislav Belyavsky`,
     description,
   };
 }

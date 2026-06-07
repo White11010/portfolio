@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = pick(post.excerpt, locale as Locale);
 
   return {
-    title: `${title} — Alex Ivanov`,
+    title: `${title} — Vladislav Belyavsky`,
     description,
   };
 }
@@ -72,11 +72,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
         <div className="mt-12 pt-6 border-t border-border dark:border-border-dark">
           <p className="text-sm text-text-secondary dark:text-text-secondary-dark">
-            {t('writtenBy', { name: 'Alex Ivanov' })}
+            {t('writtenBy', { name: 'Vladislav Belyavsky' })}
           </p>
           <div className="mt-2 flex gap-4">
             <a
-              href="https://t.me/alexivanov"
+              href="https://t.me/wh1te26"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-sm link-accent min-h-[44px]"
@@ -84,7 +84,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <Send size={14} /> {t('telegram')}
             </a>
             <a
-              href="mailto:alex@ivanov.dev"
+              href="mailto:beliavski26@gmail.com"
               className="inline-flex items-center gap-1 text-sm link-accent min-h-[44px]"
             >
               <Mail size={14} /> {t('email')}

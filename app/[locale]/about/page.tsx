@@ -10,9 +10,9 @@ type PageProps = {
 const stack = ['TypeScript', 'Vue', 'Nuxt', 'React', 'Node.js', 'PostgreSQL'];
 
 const socials = [
-  { labelKey: 'github' as const, href: 'https://github.com/alexivanov', icon: Github },
-  { labelKey: 'telegram' as const, href: 'https://t.me/alexivanov', icon: Send },
-  { labelKey: 'email' as const, href: 'mailto:alex@ivanov.dev', icon: Mail },
+  { labelKey: 'github' as const, href: 'https://github.com/white11010', icon: Github },
+  { labelKey: 'telegram' as const, href: 'https://t.me/wh1te26', icon: Send },
+  { labelKey: 'email' as const, href: 'mailto:beliavski26@gmail.com', icon: Mail },
 ];
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -75,7 +75,7 @@ export default function Header() {
             href="/"
             className="text-base font-semibold tracking-tight text-text-primary dark:text-text-primary-dark hover:text-accent dark:hover:text-accent-border"
           >
-            Alex Ivanov
+            Vladislav Belyavsky
           </Link>
 
           <nav className="hidden items-center gap-6 sm:flex" aria-label="Main">

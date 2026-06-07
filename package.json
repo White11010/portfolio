@@ -11,7 +11,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "lucide-react": "^0.344.0",
+    "lucide-react": "^1.17.0",
     "next": "^15.3.3",
     "next-intl": "^4.1.0",
     "react": "^19.1.0",

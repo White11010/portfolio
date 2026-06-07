@@ -13,7 +13,7 @@ export default async function Footer() {
         </span>
         <div className="flex items-center gap-4">
           <a
-            href="https://github.com/alexivanov"
+            href="https://github.com/white11010"
             target="_blank"
             rel="noopener noreferrer"
             className="touch-target text-text-secondary dark:text-text-secondary-dark hover:text-accent dark:hover:text-accent-border transition-colors duration-200"
@@ -22,7 +22,7 @@ export default async function Footer() {
             <Github size={20} />
           </a>
           <a
-            href="https://t.me/alexivanov"
+            href="https://t.me/wh1te26"
             target="_blank"
             rel="noopener noreferrer"
             className="touch-target text-text-secondary dark:text-text-secondary-dark hover:text-accent dark:hover:text-accent-border transition-colors duration-200"
@@ -31,7 +31,7 @@ export default async function Footer() {
             <Send size={20} />
           </a>
           <a
-            href="mailto:alex@ivanov.dev"
+            href="mailto:beliavski26@gmail.com"
             className="touch-target text-text-secondary dark:text-text-secondary-dark hover:text-accent dark:hover:text-accent-border transition-colors duration-200"
             aria-label={t('email')}
           >
