@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "siteName": "Алексей Иванов",
+    "home": {
+      "title": "Алексей Иванов — Frontend и Fullstack разработчик",
+      "description": "Личное портфолио и блог Алексея Иванова. Open-source инструменты, браузерные игры и статьи о TypeScript и архитектуре ПО."
+    },
+    "projects": {
+      "title": "Проекты — Алексей Иванов",
+      "description": "Open-source инструменты и эксперименты Алексея Иванова."
+    },
+    "blog": {
+      "title": "Блог — Алексей Иванов",
+      "description": "Статьи о TypeScript, архитектуре ПО и open-source разработке."
+    },
+    "about": {
+      "title": "Обо мне — Алексей Иванов",
+      "description": "Об Алексее Иванове — frontend и fullstack разработчике."
+    }
+  },
+  "nav": {
+    "projects": "Проекты",
+    "blog": "Блог",
+    "about": "Обо мне",
+    "switchLanguage": "Переключить язык",
+    "toggleTheme": "Переключить тёмную тему",
+    "openMenu": "Открыть меню",
+    "closeMenu": "Закрыть меню"
+  },
+  "hero": {
+    "title": "Frontend и Fullstack разработчик",
+    "subtitle": "Создаю open-source инструменты, браузерные игры и пишу о TypeScript и архитектуре ПО.",
+    "viewProjects": "Смотреть проекты",
+    "readBlog": "Читать блог"
+  },
+  "home": {
+    "projectsHeading": "Проекты",
+    "blogHeading": "Из блога",
+    "viewAllPosts": "Все записи →",
+    "connectHeading": "Связаться"
+  },
+  "projects": {
+    "title": "Проекты",
+    "subtitle": "Open-source инструменты и эксперименты",
+    "source": "Исходники",
+    "demo": "Демо",
+    "notFound": "Проект не найден.",
+    "backToProjects": "← К проектам",
+    "backLink": "← Проекты",
+    "keyDecisions": "Ключевые технические решения",
+    "screenshotPlaceholder": "Заглушка скриншота",
+    "github": "GitHub",
+    "npm": "npm",
+    "liveDemo": "Живое демо"
+  },
+  "blog": {
+    "title": "Блог",
+    "allTags": "Все",
+    "noPosts": "Нет записей с этим тегом.",
+    "external": "Внешняя",
+    "notFound": "Запись не найдена.",
+    "backToBlog": "← К блогу",
+    "backLink": "← Блог",
+    "writtenBy": "Автор: {name}",
+    "telegram": "Telegram",
+    "email": "Email"
+  },
+  "about": {
+    "title": "Алексей Иванов",
+    "role": "Frontend и Fullstack разработчик",
+    "bio1": "Я разработчик, который создаёт open-source инструменты и пишет о TypeScript, архитектуре ПО и функциональных паттернах. Большая часть моей работы живёт на GitHub — там я поддерживаю несколько библиотек и side-проектов, которые использую как лабораторию для интересных идей.",
+    "bio2": "Мой ежедневный стек — TypeScript: на фронтенде React и Vue, на бэкенде Node.js и PostgreSQL. Мне важны developer experience, типобезопасность и код, который легко удалить. Также у меня слабость к браузерным играм — я выпустил пару текстовых стратегий.",
+    "bio3": "Когда не пишу код, делюсь тем, чему научился — в основном о паттернах проектирования, пересечении функционального программирования и практического TypeScript, а также об уроках поддержки open-source проектов. Пишу на английском и русском.",
+    "stackHeading": "Стек",
+    "findMeHeading": "Где меня найти",
+    "resumeHeading": "Резюме",
+    "downloadCvRu": "Скачать CV (RU)",
+    "downloadCvEn": "Скачать CV (EN)"
+  },
+  "footer": {
+    "copyright": "© {year} Алексей Иванов",
+    "github": "GitHub",
+    "telegram": "Telegram",
+    "email": "Email"
+  },
+  "common": {
+    "copyCode": "Копировать код"
+  },
+  "notFound": {
+    "title": "Страница не найдена",
+    "description": "Запрашиваемая страница не существует.",
+    "backHome": "← На главную"
+  },
+  "error": {
+    "title": "Что-то пошло не так",
+    "retry": "Попробовать снова"
+  }
+}

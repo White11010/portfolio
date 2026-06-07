@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "siteName": "Alex Ivanov",
+    "home": {
+      "title": "Alex Ivanov — Frontend & Fullstack Developer",
+      "description": "Personal portfolio and blog of Alex Ivanov. Open-source tools, browser games, and articles about TypeScript and software architecture."
+    },
+    "projects": {
+      "title": "Projects — Alex Ivanov",
+      "description": "Open-source tools and experiments by Alex Ivanov."
+    },
+    "blog": {
+      "title": "Blog — Alex Ivanov",
+      "description": "Articles about TypeScript, software architecture, and open-source development."
+    },
+    "about": {
+      "title": "About — Alex Ivanov",
+      "description": "About Alex Ivanov — frontend and fullstack developer."
+    }
+  },
+  "nav": {
+    "projects": "Projects",
+    "blog": "Blog",
+    "about": "About",
+    "switchLanguage": "Switch language",
+    "toggleTheme": "Toggle dark mode",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "hero": {
+    "title": "Frontend & Fullstack Developer",
+    "subtitle": "I build open-source tools, browser games, and write about TypeScript and software architecture.",
+    "viewProjects": "View Projects",
+    "readBlog": "Read Blog"
+  },
+  "home": {
+    "projectsHeading": "Projects",
+    "blogHeading": "From the Blog",
+    "viewAllPosts": "View all posts →",
+    "connectHeading": "Let's connect"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Open-source tools and experiments",
+    "source": "Source",
+    "demo": "Demo",
+    "notFound": "Project not found.",
+    "backToProjects": "← Back to Projects",
+    "backLink": "← Projects",
+    "keyDecisions": "Key Technical Decisions",
+    "screenshotPlaceholder": "Screenshot placeholder",
+    "github": "GitHub",
+    "npm": "npm",
+    "liveDemo": "Live Demo"
+  },
+  "blog": {
+    "title": "Blog",
+    "allTags": "All",
+    "noPosts": "No posts found for this tag.",
+    "external": "External",
+    "notFound": "Post not found.",
+    "backToBlog": "← Back to Blog",
+    "backLink": "← Blog",
+    "writtenBy": "Written by {name}",
+    "telegram": "Telegram",
+    "email": "Email"
+  },
+  "about": {
+    "title": "Alex Ivanov",
+    "role": "Frontend & Fullstack Developer",
+    "bio1": "I am a developer who builds open-source tools and writes about TypeScript, software architecture, and functional programming patterns. Most of my work lives on GitHub, where I maintain a handful of libraries and side projects that I use as a laboratory for ideas I find interesting.",
+    "bio2": "My day-to-day stack revolves around TypeScript — on the frontend with React and Vue, and on the backend with Node.js and PostgreSQL. I care about developer experience, type safety, and code that is easy to delete. I also have a soft spot for browser-based games and have shipped a couple of text-based strategy experiments.",
+    "bio3": "When I am not coding, I write about the things I learn — mostly around design patterns, the intersection of functional programming and practical TypeScript, and lessons from maintaining open-source projects. I write in both English and Russian.",
+    "stackHeading": "Stack",
+    "findMeHeading": "Find me",
+    "resumeHeading": "Resume",
+    "downloadCvRu": "Download CV (RU)",
+    "downloadCvEn": "Download CV (EN)"
+  },
+  "footer": {
+    "copyright": "© {year} Alex Ivanov",
+    "github": "GitHub",
+    "telegram": "Telegram",
+    "email": "Email"
+  },
+  "common": {
+    "copyCode": "Copy code"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist.",
+    "backHome": "← Back to home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "retry": "Try again"
+  }
+}

@@ -1,0 +1,24 @@
+---
+description: TypeScript-стандарты проекта
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript
+
+- `strict: true`. Не использовать `any` — предпочитать `unknown` + сужение типа.
+- Не использовать `as`-касты для «глушения» ошибок. Допустимы только `as const` и
+  обоснованные narrowing-касты.
+- Публичные функции и экспортируемые API типизировать явно (параметры и возвращаемое значение).
+- Доменные данные описывать через `interface`/`type`; для вариантов — discriminated unions.
+- Никаких неиспользуемых переменных/импортов (`noUnusedLocals`, `noUnusedParameters`).
+- Импорты только типов помечать `import type { ... }`.
+- Использовать алиас `@/*` вместо длинных относительных путей.
+
+```typescript
+// ❌ BAD
+function find(slug): any { /* ... */ }
+
+// ✅ GOOD
+function find(slug: string): Project | undefined { /* ... */ }
+```

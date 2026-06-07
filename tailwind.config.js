@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -25,7 +25,10 @@ export default {
             DEFAULT: '#111111',
             dark: '#EDEDED',
           },
-          secondary: '#6B7280',
+          secondary: {
+            DEFAULT: '#6B7280',
+            dark: '#9CA3AF',
+          },
         },
         border: {
           DEFAULT: '#E5E7EB',
@@ -36,8 +39,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'Fira Code', 'monospace'],
       },
       fontSize: {
         base: ['16px', { lineHeight: '1.65' }],
@@ -48,6 +51,15 @@ export default {
       },
       transitionDuration: {
         DEFAULT: '200ms',
+      },
+      keyframes: {
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 0.2s ease-out',
       },
     },
   },

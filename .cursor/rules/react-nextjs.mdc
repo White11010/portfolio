@@ -1,0 +1,29 @@
+---
+description: Паттерны React и Next.js (App Router, SSR)
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# React / Next.js
+
+- Только функциональные компоненты и хуки. Один компонент — одна ответственность.
+- По умолчанию — серверные компоненты. `'use client'` добавлять только там, где есть
+  состояние, эффекты, события или браузерные API.
+- Не обращаться к `window`/`document`/`localStorage` при рендере — только в `useEffect`
+  (внутри client-компонентов). SSR-код должен быть детерминированным.
+- Тему/локаль выставлять inline-скриптом в `layout.tsx` до гидратации, чтобы избежать
+  FOUC и hydration mismatch.
+- Навигация — через `next/link` и `usePathname`; не использовать `react-router-dom`.
+- SEO — через Metadata API (`metadata` / `generateMetadata`) на уровне страниц.
+- Любой пользовательский текст — через i18n-словари, не хардкодить строки в JSX.
+- Тач-таргеты ≥ 44×44px; интерактив не должен зависеть только от `hover`.
+- Переиспользуемую логику выносить в кастомные хуки `useXxx`.
+
+```tsx
+// ❌ BAD — браузерный API в теле серверного компонента
+const dark = localStorage.getItem('theme');
+
+// ✅ GOOD — client-компонент, чтение в эффекте
+'use client';
+useEffect(() => { setDark(localStorage.getItem('theme') === 'dark'); }, []);
+```
