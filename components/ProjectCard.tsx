@@ -1,4 +1,5 @@
-import { Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
+import Github from '@/components/icons/Github';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Tag from '@/components/Tag';

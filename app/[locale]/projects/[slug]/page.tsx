@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Github, ExternalLink, Package } from 'lucide-react';
+import { ExternalLink, Package } from 'lucide-react';
+import Github from '@/components/icons/Github';
 import { Link } from '@/i18n/navigation';
 import Tag from '@/components/Tag';
 import { getProject, projects } from '@/data/projects';

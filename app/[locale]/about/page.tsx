@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Github, Send, Mail, Download } from 'lucide-react';
+import { Send, Mail, Download } from 'lucide-react';
+import Github from '@/components/icons/Github';
 import Tag from '@/components/Tag';
 
 type PageProps = {

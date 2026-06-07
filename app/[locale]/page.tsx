@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { Github, Send, Mail } from 'lucide-react';
+import { Send, Mail } from 'lucide-react';
+import Github from '@/components/icons/Github';
 import { Link } from '@/i18n/navigation';
 import ProjectCard from '@/components/ProjectCard';
 import BlogPostCard from '@/components/BlogPostCard';

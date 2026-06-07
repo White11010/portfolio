@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
-import { Github, Send, Mail } from 'lucide-react';
+import { Send, Mail } from 'lucide-react';
+import Github from '@/components/icons/Github';
 
 export default async function Footer() {
   const t = await getTranslations('footer');
