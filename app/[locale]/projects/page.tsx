@@ -32,7 +32,7 @@ export default async function ProjectsPage({ params }: PageProps) {
           {t('title')}
         </h1>
         <p className="mt-2 text-text-secondary dark:text-text-secondary-dark">{t('subtitle')}</p>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid auto-rows-fr gap-5 sm:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard key={project.slug} project={project} locale={localeTyped} />
           ))}
