@@ -14,6 +14,11 @@ export interface Project {
   demo?: string;
   status: ProjectStatus;
   version?: string;
+  image?: {
+    src: string;
+    width: number;
+    height: number;
+  };
   articles?: { title: LocalizedText; url: string }[];
   decisions: LocalizedText[];
 }
@@ -36,6 +41,11 @@ export const projects: Project[] = [
     npm: 'https://www.npmjs.com/package/eslint-plugin-vue-arch',
     status: 'released',
     version: 'v1.0.0',
+    image: {
+      src: '/projects/eslint-plugin-vue-arch.png',
+      width: 1704,
+      height: 588,
+    },
     decisions: [
       {
         en: 'Report-only, no autofix or suggestion. The obvious "fix" — wrapping props in () => props — would pass the linter while still watching the entire reactive proxy. The rule forces the developer to choose a specific property (watch(() => props.id, ...)), making the dependency explicit rather than cosmetic.',

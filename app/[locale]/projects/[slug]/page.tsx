@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ExternalLink, Package } from 'lucide-react';
@@ -99,13 +100,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </ul>
         </div>
 
-        <div className="mt-10 rounded-card border border-border dark:border-border-dark bg-surface dark:bg-surface-dark p-8 flex items-center justify-center">
-          <span className="text-sm text-text-secondary dark:text-text-secondary-dark">
-            {t('screenshotPlaceholder')}
-          </span>
-        </div>
+        {project.image && (
+          <div className="mt-10 overflow-hidden rounded-card border border-border dark:border-border-dark">
+            <Image
+              src={project.image.src}
+              alt={pick(project.title, localeTyped)}
+              width={project.image.width}
+              height={project.image.height}
+              sizes="(max-width: 720px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </div>
+        )}
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className={`flex flex-wrap gap-3 ${project.image ? 'mt-8' : 'mt-10'}`}>
           <a
             href={project.github}
             target="_blank"
