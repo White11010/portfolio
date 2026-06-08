@@ -2,6 +2,7 @@ import { ExternalLink } from 'lucide-react';
 import Github from '@/components/icons/Github';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import ProjectStatusBadge from '@/components/ProjectStatusBadge';
 import Tag from '@/components/Tag';
 import { pick } from '@/lib/i18n';
 import type { Project } from '@/data/projects';
@@ -22,7 +23,13 @@ export default async function ProjectCard({
 
   return (
     <Link href={`/projects/${project.slug}`} className="card group block">
-      <div className="mb-3 text-2xl">{project.emoji}</div>
+      <div className="mb-3 flex items-start justify-between gap-2">
+        <span className="text-2xl">{project.emoji}</span>
+        <ProjectStatusBadge
+          status={project.status}
+          label={t(`status.${project.status}`)}
+        />
+      </div>
       <h3 className="mb-1.5 text-base font-semibold text-text-primary dark:text-text-primary-dark group-hover:text-accent dark:group-hover:text-accent-border transition-colors duration-200">
         {pick(project.title, locale)}
       </h3>

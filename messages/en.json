@@ -51,7 +51,11 @@
     "screenshotPlaceholder": "Screenshot placeholder",
     "github": "GitHub",
     "npm": "npm",
-    "liveDemo": "Live Demo"
+    "liveDemo": "Live Demo",
+    "status": {
+      "released": "Released",
+      "in-development": "In development"
+    }
   },
   "blog": {
     "title": "Blog",

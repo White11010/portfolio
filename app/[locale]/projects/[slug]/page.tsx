@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ExternalLink, Package } from 'lucide-react';
 import Github from '@/components/icons/Github';
 import { Link } from '@/i18n/navigation';
+import ProjectStatusBadge from '@/components/ProjectStatusBadge';
 import Tag from '@/components/Tag';
 import { getProject, projects } from '@/data/projects';
 import { pick } from '@/lib/i18n';
@@ -55,6 +56,13 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         <h1 className="mt-4 text-2xl sm:text-3xl font-bold text-text-primary dark:text-text-primary-dark">
           {project.emoji} {pick(project.title, localeTyped)}
         </h1>
+
+        <div className="mt-3">
+          <ProjectStatusBadge
+            status={project.status}
+            label={t(`status.${project.status}`)}
+          />
+        </div>
 
         <div className="mt-3 flex flex-wrap gap-1.5">
           {project.tags.map((tag) => (

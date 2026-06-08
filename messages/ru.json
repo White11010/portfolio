@@ -51,7 +51,11 @@
     "screenshotPlaceholder": "Заглушка скриншота",
     "github": "GitHub",
     "npm": "npm",
-    "liveDemo": "Живое демо"
+    "liveDemo": "Живое демо",
+    "status": {
+      "released": "Выпущен",
+      "in-development": "В разработке"
+    }
   },
   "blog": {
     "title": "Блог",
