@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import BlogTagFilter from '@/components/BlogTagFilter';
-import type { Locale } from '@/i18n/routing';
-
 type PageProps = {
   params: Promise<{ locale: string }>;
 };
@@ -29,7 +27,7 @@ export default async function BlogPage({ params }: PageProps) {
         <h1 className="text-2xl sm:text-3xl font-bold text-text-primary dark:text-text-primary-dark">
           {t('title')}
         </h1>
-        <BlogTagFilter locale={locale as Locale} />
+        <BlogTagFilter />
       </div>
     </div>
   );

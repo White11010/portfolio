@@ -297,7 +297,6 @@ export const projects: Project[] = [
     },
     tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'next-intl', 'SSG'],
     github: 'https://github.com/White11010/portfolio',
-    demo: 'https://ivanov.dev',
     status: 'released',
     version: 'v1.0.0',
     decisions: [

@@ -4,13 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import BlogPostCard from '@/components/BlogPostCard';
 import { posts, blogTags } from '@/data/posts';
-import type { Locale } from '@/i18n/routing';
-
-interface BlogTagFilterProps {
-  locale: Locale;
-}
-
-export default function BlogTagFilter({ locale }: BlogTagFilterProps) {
+export default function BlogTagFilter() {
   const t = useTranslations('blog');
   const [activeTag, setActiveTag] = useState<string | null>(null);
 
@@ -22,7 +16,7 @@ export default function BlogTagFilter({ locale }: BlogTagFilterProps) {
   return (
     <>
       <div className="relative mt-6">
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 scroll-fade-x">
+        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
           {tags.map((tag) => {
             const isActive = activeTag === tag;
             const label = tag === null ? t('allTags') : tag;
@@ -47,7 +41,7 @@ export default function BlogTagFilter({ locale }: BlogTagFilterProps) {
       <div className="mt-8 divide-y divide-border dark:divide-border-dark">
         {filtered.map((post) => (
           <div key={post.slug} className="py-6 first:pt-0 last:pb-0">
-            <BlogPostCard post={post} locale={locale} />
+            <BlogPostCard post={post} />
           </div>
         ))}
         {filtered.length === 0 && (

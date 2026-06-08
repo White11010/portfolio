@@ -80,7 +80,7 @@ export default async function HomePage({ params }: PageProps) {
           </h2>
           <div className="space-y-6">
             {latestPosts.map((post) => (
-              <BlogPostCard key={post.slug} post={post} locale={localeTyped} />
+              <BlogPostCard key={post.slug} post={post} />
             ))}
           </div>
           <Link href="/blog" className="mt-6 inline-block text-sm font-medium link-accent">

@@ -52,6 +52,7 @@
     "github": "GitHub",
     "npm": "npm",
     "liveDemo": "Live Demo",
+    "relatedArticles": "Related articles",
     "status": {
       "released": "Released",
       "in-development": "In development"
@@ -61,13 +62,15 @@
     "title": "Blog",
     "allTags": "All",
     "noPosts": "No posts found for this tag.",
-    "external": "External",
-    "notFound": "Post not found.",
-    "backToBlog": "← Back to Blog",
-    "backLink": "← Blog",
-    "writtenBy": "Written by {name}",
-    "telegram": "Telegram",
-    "email": "Email"
+    "lang": {
+      "en": "EN",
+      "ru": "RU"
+    },
+    "platform": {
+      "medium": "Medium",
+      "habr": "Habr",
+      "devto": "dev.to"
+    }
   },
   "about": {
     "title": "Vladislav Belyavsky",

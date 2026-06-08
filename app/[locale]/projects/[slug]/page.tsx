@@ -6,6 +6,8 @@ import Github from '@/components/icons/Github';
 import { Link } from '@/i18n/navigation';
 import ProjectStatusBadge from '@/components/ProjectStatusBadge';
 import Tag from '@/components/Tag';
+import BlogPostCard from '@/components/BlogPostCard';
+import { getPostsByProject } from '@/data/posts';
 import { getProject, projects } from '@/data/projects';
 import { pick } from '@/lib/i18n';
 import type { Locale } from '@/i18n/routing';
@@ -45,6 +47,8 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   if (!project) {
     notFound();
   }
+
+  const relatedPosts = getPostsByProject(slug);
 
   return (
     <div className="py-12 sm:py-16">
@@ -121,6 +125,21 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             </a>
           )}
         </div>
+
+        {relatedPosts.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-border dark:border-border-dark">
+            <h2 className="text-lg font-semibold text-text-primary dark:text-text-primary-dark mb-6">
+              {t('relatedArticles')}
+            </h2>
+            <div className="divide-y divide-border dark:divide-border-dark">
+              {relatedPosts.map((post) => (
+                <div key={post.slug} className="py-6 first:pt-0 last:pb-0">
+                  <BlogPostCard post={post} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

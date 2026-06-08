@@ -52,6 +52,7 @@
     "github": "GitHub",
     "npm": "npm",
     "liveDemo": "Живое демо",
+    "relatedArticles": "Связанные статьи",
     "status": {
       "released": "Выпущен",
       "in-development": "В разработке"
@@ -61,13 +62,15 @@
     "title": "Блог",
     "allTags": "Все",
     "noPosts": "Нет записей с этим тегом.",
-    "external": "Внешняя",
-    "notFound": "Запись не найдена.",
-    "backToBlog": "← К блогу",
-    "backLink": "← Блог",
-    "writtenBy": "Автор: {name}",
-    "telegram": "Telegram",
-    "email": "Email"
+    "lang": {
+      "en": "EN",
+      "ru": "RU"
+    },
+    "platform": {
+      "medium": "Medium",
+      "habr": "Habr",
+      "devto": "dev.to"
+    }
   },
   "about": {
     "title": "Владислав Белявский",

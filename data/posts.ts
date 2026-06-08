@@ -1,84 +1,73 @@
-import type { LocalizedText } from '@/lib/i18n';
-import {
-  POST_CHESS_ANALYZER_EN,
-  POST_CHESS_ANALYZER_RU,
-  POST_FUNCTIONAL_PATTERNS_EN,
-  POST_FUNCTIONAL_PATTERNS_RU,
-  POST_OPTIONAL_CHAINING_EN,
-  POST_OPTIONAL_CHAINING_RU,
-} from '@/data/post-bodies';
+export type PostLang = 'en' | 'ru';
+
+export type PostPlatform = 'medium' | 'habr' | 'devto';
 
 export interface Post {
   slug: string;
-  title: LocalizedText;
-  excerpt: LocalizedText;
+  title: string;
+  excerpt: string;
+  lang: PostLang;
+  platform: PostPlatform;
   date: string;
-  readingTime: LocalizedText;
+  readingTime: string;
   tags: string[];
-  external?: boolean;
-  externalUrl?: string;
-  body: LocalizedText;
+  externalUrl: string;
+  projectSlug?: string;
 }
-
-export const blogTags = ['TypeScript', 'Architecture', 'Open Source', 'Game Dev'];
 
 export const posts: Post[] = [
   {
-    slug: 'optional-chaining-vs-option-type',
-    title: {
-      en: 'Optional Chaining vs Option Type: When Safety Matters',
-      ru: 'Optional Chaining vs Option Type: когда важна безопасность',
-    },
-    excerpt: {
-      en: 'Optional chaining is convenient, but it silently swallows nulls. Here is why an explicit Option type can save you from subtle bugs in larger codebases.',
-      ru: 'Optional chaining удобен, но молча проглатывает null. Почему явный тип Option спасает от тонких багов в больших кодовых базах.',
-    },
-    date: '2026-03-14',
-    readingTime: { en: '8 min', ru: '8 мин' },
-    tags: ['TypeScript', 'Architecture'],
-    body: {
-      en: POST_OPTIONAL_CHAINING_EN,
-      ru: POST_OPTIONAL_CHAINING_RU,
-    },
+    slug: 'stop-returning-null-option-type',
+    title: 'Stop Returning null: A Tiny Option<T> for TypeScript',
+    excerpt:
+      'Why optional chaining is not enough when nullability leaks through your domain model — and how a lightweight Option type keeps errors explicit.',
+    lang: 'en',
+    platform: 'medium',
+    date: '2026-05-12',
+    readingTime: '5 min',
+    tags: ['TypeScript', 'Open Source'],
+    externalUrl: 'https://medium.com/p/3003a868a62c',
+    projectSlug: 'nevernullable',
   },
   {
-    slug: 'building-chess-analyzer',
-    title: {
-      en: 'Building Chess Analyzer: Architecture Lessons from a Side Project',
-      ru: 'Создание Chess Analyzer: архитектурные уроки side-проекта',
-    },
-    excerpt: {
-      en: 'What I learned about Electron IPC, engine integration, and keeping a desktop app responsive while running heavy computation in the background.',
-      ru: 'Чему научился про Electron IPC, интеграцию движка и отзывчивость десктопного приложения при тяжёлых вычислениях в фоне.',
-    },
-    date: '2026-01-22',
-    readingTime: { en: '12 min', ru: '12 мин' },
-    tags: ['Architecture', 'Open Source'],
-    body: {
-      en: POST_CHESS_ANALYZER_EN,
-      ru: POST_CHESS_ANALYZER_RU,
-    },
+    slug: 'grin-rust-cli-codebase-map',
+    title: 'I Built a Rust CLI in 3 Days That Maps Any Codebase Instantly — The Hardest Bug Wasn\'t Rust',
+    excerpt: 'A story about a new job, unfamiliar repositories, and the one Windows bug that almost broke everything. How GRIN — a git analytics CLI — went from a weekend idea to a working tool, and what parsing git log output on legacy Windows terminals taught me about assumptions.',
+    lang: 'en',
+    platform: 'medium',
+    date: '2026-05-26',
+    readingTime: '6 min',
+    tags: ['Rust', 'Open Source'],
+    externalUrl: 'https://medium.com/@beliavski26/i-built-a-rust-cli-in-3-days-that-maps-any-codebase-instantly-the-hardest-bug-wasnt-rust-5680a4460c76',
+    projectSlug: 'grin',
   },
   {
-    slug: 'functional-patterns-in-game-dev',
-    title: {
-      en: 'Functional Patterns in Game Development',
-      ru: 'Функциональные паттерны в разработке игр',
-    },
-    excerpt: {
-      en: 'How I applied functional programming ideas — immutability, pure functions, and composition — to a browser-based economy game and why it made the code easier to test and extend.',
-      ru: 'Как применил идеи функционального программирования — иммутабельность, чистые функции и композицию — в браузерной экономической игре и почему код стало проще тестировать и расширять.',
-    },
-    date: '2025-11-08',
-    readingTime: { en: '10 min', ru: '10 мин' },
-    tags: ['TypeScript', 'Game Dev', 'Open Source'],
-    body: {
-      en: POST_FUNCTIONAL_PATTERNS_EN,
-      ru: POST_FUNCTIONAL_PATTERNS_RU,
-    },
+    slug: 'cursor-slow-large-projects-config',
+    title: 'Cursor Feels Slow on Large Projects? You\'re Probably Missing This One Config',
+    excerpt: 'How .cursorignore, a quick cache reset, and .cursorrules can cut AI indexing overhead and restore your sanity.',
+    lang: 'en',
+    platform: 'medium',
+    date: '2026-05-27',
+    readingTime: '3 min',
+    tags: ['Tooling'],
+    externalUrl: 'https://medium.com/@beliavski26/cursor-feels-slow-on-large-projects-youre-probably-missing-this-one-config-0b63943eab0e',
+  },
+  {
+    slug: 'vue-reactivity-props-watch-cost',
+    title: 'Vue Reactivity Mechanics: The Cost of Passing the Entire props Object to watch, and Automating the Control',
+    excerpt: 'Passing a reactive object directly to watch triggers on every property change, not just the ones you care about. A look at why this happens inside Vue\'s Proxy-based reactivity system, and how to automate the check with an ESLint rule.',
+    lang: 'en',
+    platform: 'medium',
+    date: '2026-06-08',
+    readingTime: '3 min',
+    tags: ['Vue', 'Architecture'],
+    externalUrl: 'https://medium.com/@beliavski26/vue-reactivity-mechanics-the-cost-of-passing-the-entire-props-object-to-watch-and-automating-the-8e1afdc38073',
+    projectSlug: 'eslint-plugin-vue-arch',
   },
 ];
 
-export function getPost(slug: string): Post | undefined {
-  return posts.find((p) => p.slug === slug);
+export const blogTags = [...new Set(posts.flatMap((post) => post.tags))].sort();
+
+export function getPostsByProject(projectSlug: string): Post[] {
+  return posts.filter((post) => post.projectSlug === projectSlug);
 }
