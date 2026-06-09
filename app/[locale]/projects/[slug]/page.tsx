@@ -83,6 +83,19 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             ))}
         </div>
 
+        {project.image && (
+          <div className="mt-10 overflow-hidden rounded-card border border-border dark:border-border-dark">
+            <Image
+              src={project.image.src}
+              alt={pick(project.title, localeTyped)}
+              width={project.image.width}
+              height={project.image.height}
+              sizes="(max-width: 720px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </div>
+        )}
+
         <div className="mt-10">
           <h2 className="text-lg font-semibold text-text-primary dark:text-text-primary-dark mb-3">
             {t('keyDecisions')}
@@ -100,18 +113,6 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           </ul>
         </div>
 
-        {project.image && (
-          <div className="mt-10 overflow-hidden rounded-card border border-border dark:border-border-dark">
-            <Image
-              src={project.image.src}
-              alt={pick(project.title, localeTyped)}
-              width={project.image.width}
-              height={project.image.height}
-              sizes="(max-width: 720px) 100vw, 720px"
-              className="h-auto w-full"
-            />
-          </div>
-        )}
 
         <div className={`flex flex-wrap gap-3 ${project.image ? 'mt-8' : 'mt-10'}`}>
           <a

@@ -23,6 +23,19 @@ export interface Project {
   decisions: LocalizedText[];
 }
 
+/** Display order for project lists (home, /projects). Edit slugs here only. */
+export const projectOrder = [
+  'eslint-plugin-vue-arch',
+  'blindspot',
+  'nevernullable',
+  'kanban-app',
+  'grin',
+  'guildmaster',
+  'portfolio',
+] as const;
+
+export type ProjectSlug = (typeof projectOrder)[number];
+
 export const projects: Project[] = [
   {
     slug: 'eslint-plugin-vue-arch',
@@ -48,20 +61,20 @@ export const projects: Project[] = [
     },
     decisions: [
       {
-        en: 'Getter wrappers are caught via getGetterReturnExpression, which resolves trivial single-return getters — watch(() => props, ...) is reported for the same reason as bare watch(props, ...).',
-        ru: 'Геттеры ловятся через getGetterReturnExpression, который разбирает тривиальные single-return геттеры — watch(() => props, ...) попадает под правило по той же причине, что и watch(props, ...).',
+        en: 'Getter wrappers that return the entire props object are caught via AST analysis of single-return getters, so watch(() => props, ...) is reported for the same reason as bare watch(props, ...).',
+        ru: 'Геттеры, возвращающие весь объект props, ловятся через AST-анализ single-return геттеров — watch(() => props, ...) попадает под правило по той же причине, что и watch(props, ...).',
       },
       {
-        en: 'defineProps() aliases are tracked via scope analysis: isEntirePropsIdentifier walks variable definitions with ASTUtils.findVariable, so const p = defineProps(); watch(p, ...) is caught regardless of the identifier name.',
-        ru: 'Алиасы defineProps() отслеживаются через scope analysis: isEntirePropsIdentifier обходит определения переменных через ASTUtils.findVariable, поэтому const p = defineProps(); watch(p, ...) ловится независимо от имени переменной.',
+        en: 'defineProps() aliases are tracked via scope analysis, so const p = defineProps(); watch(p, ...) is caught regardless of the identifier name.',
+        ru: 'Алиасы defineProps() отслеживаются через scope analysis — const p = defineProps(); watch(p, ...) ловится независимо от имени переменной.',
       },
       {
-        en: 'Tests run against real .vue SFCs with a dual-parser setup (vue-eslint-parser + @typescript-eslint/parser) — plain .ts snippets would miss SFC-specific parser quirks and setup(props) patterns.',
-        ru: 'Тесты на реальных .vue SFC с dual-parser (vue-eslint-parser + @typescript-eslint/parser) — .ts-сниппеты пропустили бы SFC-специфику парсера и паттерны setup(props).',
+        en: 'Tests run against real .vue SFCs with a dual-parser setup (vue-eslint-parser + @typescript-eslint/parser), because plain .ts snippets miss SFC-specific parser quirks and setup(props) patterns.',
+        ru: 'Тесты на реальных .vue SFC с dual-parser (vue-eslint-parser + @typescript-eslint/parser) — .ts-сниппеты пропускают SFC-специфику парсера и паттерны setup(props).',
       },
       {
-        en: 'Shared AST utilities extracted upfront (rules/, utils/, configs/) so that adding rules for composable boundaries or provide/inject patterns does not require restructuring.',
-        ru: 'Общие AST-утилиты вынесены заранее (rules/, utils/, configs/) — добавление правил для границ composable или паттернов provide/inject не потребует рефакторинга структуры.',
+        en: 'Shared AST utilities extracted upfront into separate modules so that adding future rules for composable boundaries or provide/inject patterns requires no structural refactoring.',
+        ru: 'Общие AST-утилиты вынесены заранее в отдельные модули — добавление правил для границ composable или паттернов provide/inject не потребует рефакторинга структуры.',
       },
     ],
   },
@@ -74,8 +87,8 @@ export const projects: Project[] = [
       ru: 'Local-first десктопное приложение для игроков Lichess — синхронизация партий, анализ Stockfish, выявление шахматных паттернов и сравнение в Versus.',
     },
     longDescription: {
-      en: 'Blindspot syncs your Lichess game library via the HTTP API, runs Stockfish analysis entirely on your machine, and turns results into insights across openings, tactics, time controls, blunder patterns, and opponent rating bands. Games, analysis rows, and generated insights live in a local SQLite database; the Lichess token is stored in the OS credential keyring.\n\nThe UI is Vue 3 + Vuetify 4 + Pinia + TanStack Query, organized by Feature-Sliced Design. The desktop shell is Tauri 2: the frontend invokes Rust commands for sync, analysis, insight generation, Versus comparison, and engine control. Stockfish runs as a bundled native binary over UCI stdin/stdout behind a process-global mutex. Background batch analysis emits Tauri events so the UI stays responsive while the engine processes the library.',
-      ru: 'Blindspot синхронизирует библиотеку партий Lichess через HTTP API, запускает анализ Stockfish на вашей машине и превращает результаты в insights по дебютам, тактике, контролям времени, паттернам ошибок и рейтингу соперников. Партии, строки анализа и insights хранятся в локальной SQLite; токен Lichess — в OS credential keyring.\n\nUI — Vue 3 + Vuetify 4 + Pinia + TanStack Query по Feature-Sliced Design. Desktop-оболочка — Tauri 2: фронтенд вызывает Rust-команды для синхронизации, анализа, генерации insights, Versus и управления движком. Stockfish работает как нативный бинарник по UCI stdin/stdout за process-global mutex. Фоновый batch-анализ эмитит Tauri-события, чтобы UI оставался отзывчивым.',
+      en: 'Blindspot is a local-first desktop application for Lichess players. It syncs your game library via the HTTP API, runs Stockfish analysis entirely on your machine, and turns results into insights across openings, tactics, time controls, blunder patterns, and opponent rating bands. Games, analysis rows, and generated insights live in a local SQLite database; the Lichess token is stored in the OS credential keyring.\n\nThe UI is Vue 3 + Vuetify 4 + Pinia + TanStack Query, organized by Feature-Sliced Design. The desktop shell is Tauri 2: the frontend invokes Rust commands for sync, analysis, insight generation, Versus comparison, and engine control. Stockfish runs as a bundled native binary over UCI stdin/stdout behind a process-global mutex. Background batch analysis emits Tauri events so the UI stays responsive while the engine processes the library.',
+      ru: 'Blindspot — local-first десктопное приложение для игроков Lichess. Синхронизирует библиотеку партий через HTTP API, запускает анализ Stockfish на вашей машине и превращает результаты в insights по дебютам, тактике, контролям времени, паттернам ошибок и рейтингу соперников. Партии, строки анализа и insights хранятся в локальной SQLite; токен Lichess — в OS credential keyring.\n\nUI — Vue 3 + Vuetify 4 + Pinia + TanStack Query по Feature-Sliced Design. Desktop-оболочка — Tauri 2: фронтенд вызывает Rust-команды для синхронизации, анализа, генерации insights, Versus и управления движком. Stockfish работает как нативный бинарник по UCI stdin/stdout за process-global mutex. Фоновый batch-анализ эмитит Tauri-события, чтобы UI оставался отзывчивым.',
     },
     tags: ['Tauri', 'Vue 3', 'Rust', 'TypeScript', 'Stockfish', 'Chess', 'Lichess'],
     github: 'https://github.com/White11010/Blindspot',
@@ -83,32 +96,32 @@ export const projects: Project[] = [
     version: 'v0.1.0',
     decisions: [
       {
-        en: 'Tauri 2 over Electron — native Stockfish subprocess, SQLite via rusqlite, and Lichess HTTP sync all map naturally to Rust commands; Electron adds runtime weight and still requires a separate native or WASM engine integration path.',
-        ru: 'Tauri 2 вместо Electron — нативный subprocess Stockfish, SQLite через rusqlite и HTTP-синк с Lichess естественно ложатся на Rust-команды; Electron добавляет более тяжёлый runtime и всё равно требует отдельный native- или WASM-путь для движка.',
+        en: 'Tauri 2 over Electron, because native Stockfish subprocess, SQLite via rusqlite, and Lichess HTTP sync all map naturally to Rust commands without a separate native or WASM engine integration path.',
+        ru: 'Tauri 2 вместо Electron — нативный subprocess Stockfish, SQLite через rusqlite и HTTP-синк с Lichess естественно ложатся на Rust-команды без отдельного native- или WASM-пути для движка.',
       },
       {
-        en: 'Local-first SQLite with no Blindspot server, and Lichess token in the OS keyring rather than the database — storing the token in SQLite makes backups and DB inspection a secret-leak surface; the keyring plugin isolates credentials at the OS layer.',
-        ru: 'Local-first SQLite без сервера Blindspot, токен Lichess в OS keyring а не в базе — хранение токена в SQLite делает бэкапы и инспекцию БД поверхностью утечки секретов; keyring plugin изолирует credentials на уровне ОС.',
+        en: 'Lichess token stored in the OS keyring rather than SQLite, because SQLite backups and DB inspection would become a secret-leak surface.',
+        ru: 'Токен Lichess в OS keyring, а не в SQLite — бэкапы и инспекция БД стали бы поверхностью утечки секретов.',
       },
       {
-        en: 'Single global Stockfish process behind a mutex over per-invoke spawns or a WASM build — spawning per game dominates batch time on UCI handshake alone, and WASM in the renderer complicates threading, binary packaging, and depth tuning on desktop.',
-        ru: 'Один глобальный процесс Stockfish за mutex вместо spawn на каждый invoke или WASM — новый движок на каждую партию съедает batch-анализ на одних UCI-handshake; WASM в renderer усложняет threading, упаковку бинарника и настройку глубины на desktop.',
+        en: 'Single global Stockfish process behind a mutex over per-invoke spawns, because spawning per game dominates batch time on UCI handshake alone.',
+        ru: 'Один глобальный процесс Stockfish за mutex вместо spawn на каждый invoke — новый движок на каждую партию съедает batch-анализ на одних UCI-handshake.',
       },
       {
-        en: 'Insight generation runs in Rust over the full library rather than in the Vue layer — avoids shipping large game corpora to the renderer and keeps sample-size gates and thresholds consistent without frontend orchestration.',
-        ru: 'Генерация insights в Rust по всей библиотеке, а не во Vue-слое — не требует гонять большие корпуса партий в renderer и сохраняет единые sample-size gates и пороги без оркестрации на фронте.',
+        en: 'Insight generation runs in Rust over the full library rather than in the Vue layer, to avoid shipping large game corpora to the renderer and keep sample-size gates consistent without frontend orchestration.',
+        ru: 'Генерация insights в Rust по всей библиотеке, а не во Vue-слое — не нужно гонять большие корпуса партий в renderer, а sample-size gates остаются консистентными без оркестрации на фронте.',
       },
       {
-        en: 'Versus uses analyze_game_transient for opponent games — same Stockfish eval pass but no SQLite write — because persisting opponent analysis rows would bloat the user database with foreign libraries and complicate ownership checks.',
-        ru: 'Versus использует analyze_game_transient для партий соперника — тот же Stockfish eval, но без записи в SQLite — потому что сохранение чужих analysis rows раздуло бы БД и усложнило проверки владения.',
+        en: 'Versus runs Stockfish analysis on opponent games without persisting results to SQLite, because storing opponent analysis rows would bloat the user database with foreign libraries.',
+        ru: 'Versus запускает анализ Stockfish для партий соперника без записи в SQLite — сохранение чужих analysis rows раздуло бы БД.',
       },
       {
-        en: 'Embedded benchmarks.json pentagons by rating bucket over computing population norms from Lichess on each render — precomputed buckets keep first-load latency low and decouple benchmark quality from how many games the user has synced.',
-        ru: 'Встроенные pentagon из benchmarks.json по рейтинговым бакетам вместо вычисления норм из Lichess при каждом рендере — предвычисленные бакеты дают низкую latency первой загрузки и отвязывают качество бенчмарка от числа синхронизированных партий.',
+        en: 'Precomputed pentagons by rating bucket shipped with the app over computing population norms on each render, because this keeps first-load latency low regardless of how many games the user has synced.',
+        ru: 'Предвычисленные pentagon по рейтинговым бакетам поставляются вместе с приложением вместо вычисления норм при каждом рендере — это даёт низкую latency независимо от числа синхронизированных партий.',
       },
       {
-        en: 'FSD on the frontend with createMemoryHistory for Tauri — memory history avoids browser URL semantics in a desktop webview, and FSD keeps Tauri invokes behind entity/feature boundaries rather than scattered across components.',
-        ru: 'FSD на фронтенде с createMemoryHistory для Tauri — memory history избегает browser URL semantics в desktop webview; FSD держит Tauri invoke за границами entity/feature, а не размазанными по компонентам.',
+        en: 'createMemoryHistory for Tauri routing, because memory history avoids browser URL semantics in a desktop webview where the shell does not own navigation.',
+        ru: 'createMemoryHistory для роутинга в Tauri — memory history избегает browser URL semantics в desktop webview, где оболочка не управляет навигацией.',
       },
     ],
   },
@@ -145,20 +158,20 @@ export const projects: Project[] = [
     },
     decisions: [
       {
-        en: 'None is a shared frozen singleton rather than a constructor call — every None-producing path returns the same instance, making result === None a reliable identity check; a class-based None would produce distinct instances per call.',
-        ru: 'None — разделяемый замороженный синглтон, а не вызов конструктора — каждый путь, возвращающий None, отдаёт один экземпляр, делая result === None надёжной проверкой; класс с конструктором создавал бы отдельные экземпляры при каждом вызове.',
+        en: 'None is a shared frozen singleton rather than a constructor call, so every None-producing path returns the same instance and result === None works as a reliable identity check.',
+        ru: 'None — разделяемый замороженный синглтон, а не вызов конструктора — каждый путь, возвращающий None, отдаёт один экземпляр, что делает result === None надёжной проверкой по идентичности.',
       },
       {
-        en: 'Option(promise) returns Promise<Option<NonNullable<T>>> rather than Option<Promise<T>> — wrapping a promise in an Option combines two independent layers of uncertainty into one value that is awkward to consume.',
+        en: 'Option(promise) returns Promise<Option<NonNullable<T>>> rather than Option<Promise<T>>, because wrapping a promise in an Option combines two independent layers of uncertainty into one value that is awkward to consume.',
         ru: 'Option(promise) возвращает Promise<Option<NonNullable<T>>>, а не Option<Promise<T>> — оборачивание промиса в Option объединяет два независимых уровня неопределённости в одно значение, которое неудобно использовать.',
       },
       {
-        en: 'Some(null) and Some(undefined) throw TypeError since v2.0.0 — in v1.x they produced a "fake Some" that contradicted its own type at runtime; the unconditional check makes the type contract real rather than a compiler annotation.',
-        ru: 'Some(null) и Some(undefined) бросают TypeError с v2.0.0 — в v1.x они создавали "фейковый Some", противоречащий собственному типу в runtime; безусловная проверка делает контракт типа реальным, а не аннотацией компилятора.',
+        en: 'Some(null) and Some(undefined) throw TypeError since v2.0.0, because in v1.x they produced a "fake Some" that contradicted its own type at runtime.',
+        ru: 'Some(null) и Some(undefined) бросают TypeError с v2.0.0 — в v1.x они создавали "фейковый Some", противоречащий собственному типу в runtime.',
       },
       {
-        en: 'Option implements Symbol.iterator (Some yields once, None yields nothing) — this makes Options directly usable in for...of, spread, and flatMap without explicit unwrap adapters in collection-processing pipelines.',
-        ru: 'Option реализует Symbol.iterator (Some отдаёт значение один раз, None — ничего) — это делает Option напрямую совместимым с for...of, spread и flatMap без явных unwrap-адаптеров в пайплайнах обработки коллекций.',
+        en: 'Option implements Symbol.iterator (Some yields once, None yields nothing), making Options directly usable in for...of, spread, and flatMap without explicit unwrap adapters.',
+        ru: 'Option реализует Symbol.iterator (Some отдаёт значение один раз, None — ничего) — Options напрямую работают в for...of, spread и flatMap без явных unwrap-адаптеров.',
       },
     ],
   },
@@ -194,19 +207,19 @@ export const projects: Project[] = [
     },
     decisions: [
       {
-        en: 'Parses git log output directly rather than using git2-rs — libgit2 bindings add a native compile-time dependency and significant build complexity for what is a read-only log traversal.',
-        ru: 'Парсинг вывода git log напрямую вместо git2-rs — биндинги к libgit2 добавляют нативную зависимость на этапе компиляции и усложняют сборку для задачи, которая сводится к чтению лога.',
+        en: 'Parses git log output directly rather than using git2-rs, because libgit2 bindings add a native compile-time dependency for what is a read-only log traversal.',
+        ru: 'Парсинг вывода git log напрямую вместо git2-rs — биндинги к libgit2 добавляют нативную зависимость на этапе компиляции для задачи, которая сводится к чтению лога.',
       },
       {
-        en: 'Sparklines via Unicode block characters to stdout rather than ratatui — ratatui takes over the terminal and manages its own event loop, which breaks pipes, redirects, and non-interactive contexts.',
-        ru: 'Спарклайны через Unicode block characters в stdout вместо ratatui — ratatui перехватывает терминал и управляет собственным event loop, что ломает пайпы, редиректы и неинтерактивные контексты.',
+        en: 'Sparklines via Unicode block characters to stdout rather than ratatui, because ratatui takes over the terminal and manages its own event loop which breaks pipes and redirects.',
+        ru: 'Спарклайны через Unicode block characters в stdout вместо ratatui — ratatui перехватывает терминал и управляет собственным event loop, что ломает пайпы и редиректы.',
       },
       {
-        en: '--ascii and --no-color as first-class flags (respecting NO_COLOR and GRIN_ASCII env vars) — discovered post-release that Windows terminals on legacy code pages 437/1252 render block characters as empty boxes.',
-        ru: 'Флаги --ascii и --no-color как полноценные опции (с поддержкой NO_COLOR и GRIN_ASCII) — обнаружено после релиза, что Windows-терминалы со старыми кодовыми страницами 437/1252 отображают block characters как пустые квадраты.',
+        en: '--ascii and --no-color implemented as first-class flags (respecting NO_COLOR and GRIN_ASCII env vars) after a post-release discovery that Windows terminals on legacy code pages 437/1252 render block characters as empty boxes.',
+        ru: '--ascii и --no-color реализованы как полноценные опции (с поддержкой NO_COLOR и GRIN_ASCII) после обнаружения после релиза, что Windows-терминалы со старыми кодовыми страницами 437/1252 отображают block characters как пустые квадраты.',
       },
       {
-        en: 'Separate subcommands (timeline / who / churn) rather than a single combined output — each command is independently useful in pipes, and flags like --ext stay scoped to the command where they are meaningful.',
+        en: 'Separate subcommands (timeline / who / churn) rather than a single combined output, so each command is independently useful in pipes and flags like --ext stay scoped to where they are meaningful.',
         ru: 'Отдельные сабкоманды (timeline / who / churn) вместо единого вывода — каждая команда самодостаточна в пайпах, а флаги вроде --ext остаются в области видимости только тех команд, где они осмысленны.',
       },
     ],
@@ -228,20 +241,20 @@ export const projects: Project[] = [
     status: 'in-development',
     decisions: [
       {
-        en: 'Polyrepo over monorepo — each service has an independent CI pipeline and deployment lifecycle; a monorepo with Turborepo or Nx would simplify dependency sharing but obscure the service boundaries that are the main architectural point of the project.',
-        ru: 'Polyrepo вместо монорепо — каждый сервис имеет независимый CI-пайплайн и цикл деплоя; монорепо с Turborepo или Nx упростило бы шаринг зависимостей, но размыло бы границы сервисов, которые и являются главной архитектурной идеей.',
+        en: 'Polyrepo over monorepo, because a monorepo with Turborepo or Nx would simplify dependency sharing but obscure the service boundaries that are the main architectural point of the project.',
+        ru: 'Polyrepo вместо монорепо — монорепо с Turborepo или Nx упростило бы шаринг зависимостей, но размыло бы границы сервисов, которые и являются главной архитектурной идеей проекта.',
       },
       {
-        en: 'gRPC with shared protobuf contracts (kanban-proto) over REST for inter-service token validation — gRPC enforces the contract at schema level and catches breaking changes at code generation time rather than at runtime.',
-        ru: 'gRPC с общими protobuf-контрактами (kanban-proto) вместо REST для валидации токенов — gRPC закрепляет контракт на уровне схемы и выявляет breaking changes на этапе кодогенерации, а не в runtime.',
+        en: 'gRPC with shared protobuf contracts over REST, because gRPC enforces the contract at schema level and catches breaking changes at code generation time rather than at runtime.',
+        ru: 'gRPC с общими protobuf-контрактами вместо REST — gRPC закрепляет контракт на уровне схемы и выявляет breaking changes на этапе кодогенерации, а не в runtime.',
       },
       {
-        en: 'Kafka for task lifecycle events over direct HTTP or Redis pub/sub — HTTP creates a synchronous dependency where a notification failure propagates into the task write path; Redis pub/sub has no message durability.',
-        ru: 'Kafka для событий задач вместо HTTP или Redis pub/sub — HTTP создаёт синхронную зависимость, где сбой уведомления распространяется на путь записи задачи; Redis pub/sub не гарантирует сохранность сообщений.',
+        en: 'Kafka for task lifecycle events over direct HTTP or Redis pub/sub, because HTTP creates a synchronous dependency where a notification failure propagates into the task write path, and Redis pub/sub has no message durability.',
+        ru: 'Kafka для событий задач вместо HTTP или Redis pub/sub — HTTP создаёт синхронную зависимость, где сбой уведомления распространяется на путь записи задачи, а Redis pub/sub не гарантирует сохранность сообщений.',
       },
       {
-        en: 'Rust with Axum and sqlx for notification-service over another TypeScript/Fastify service — the service is a pure event consumer with predictable load, and sqlx provides compile-time query checking that eliminates a class of runtime errors common in ORM-based approaches.',
-        ru: 'Rust с Axum и sqlx для notification-service вместо ещё одного TypeScript/Fastify-сервиса — сервис является чистым потребителем событий с предсказуемой нагрузкой, а sqlx обеспечивает проверку запросов на этапе компиляции, устраняя класс runtime-ошибок, характерных для ORM.',
+        en: 'Rust with Axum and sqlx for notification-service over another TypeScript/Fastify service, because sqlx provides compile-time query checking that eliminates a class of runtime errors common in ORM-based approaches.',
+        ru: 'Rust с Axum и sqlx для notification-service вместо ещё одного TypeScript/Fastify-сервиса — sqlx обеспечивает проверку запросов на этапе компиляции, устраняя класс runtime-ошибок, характерных для ORM.',
       },
     ],
   },
@@ -262,36 +275,36 @@ export const projects: Project[] = [
     status: 'in-development',
     decisions: [
       {
-        en: 'FSD over a flat components tree — keeps business rules in entities, user actions in features, and page composition in pages/widgets, making turn-resolution and forecast logic testable without coupling to Vue SFCs.',
-        ru: 'FSD вместо плоского дерева компонентов — держит бизнес-правила в entities, пользовательские действия в features, а композицию страниц в pages/widgets, что упрощает тестирование логики завершения дня без привязки к Vue SFC.',
+        en: 'FSD over a flat components tree, because it keeps business rules in entities, user actions in features, and page composition in pages/widgets — making turn-resolution and Forecast logic testable without coupling to Vue SFCs.',
+        ru: 'FSD вместо плоского дерева компонентов — держит бизнес-правила в entities, пользовательские действия в features, а композицию страниц в pages/widgets, что упрощает тестирование логики завершения дня и Forecast без привязки к Vue SFC.',
       },
       {
-        en: 'Turn-based time via finishDay() rather than a real-time tick — a background timer makes the Forecast widget misleading and breaks the deterministic sequence needed for Pinia store tests.',
-        ru: 'Пошаговое время через finishDay() вместо real-time тика — фоновый таймер делал бы виджет Forecast вводящим в заблуждение и ломал бы детерминированную последовательность, нужную для тестов Pinia-сторов.',
+        en: 'Turn-based time via an explicit day-end action rather than a real-time tick, because a background timer makes the Forecast widget misleading and breaks the deterministic sequence needed for Pinia store tests.',
+        ru: 'Пошаговое время через явное действие завершения дня вместо real-time тика — фоновый таймер делал бы виджет Forecast вводящим в заблуждение и ломал бы детерминированную последовательность, нужную для тестов Pinia-сторов.',
       },
       {
-        en: 'Piecewise linear success curve ([0.75,1]→[50%,90%], [1,2]→[90%,100%]) over a flat threshold or logistic — flat threshold hides the reward for over-staffing; logistic is harder to explain in UI copy.',
-        ru: 'Кусочно-линейная кривая успеха ([0.75,1]→[50%,90%], [1,2]→[90%,100%]) вместо плоского порога или логистической — плоский порог скрывает награду за перекомплектацию; логистическую кривую сложнее объяснить в UI.',
+        en: 'Piecewise linear success curve ([0.75,1]→[50%,90%], [1,2]→[90%,100%]) over a flat threshold, because a flat threshold hides the reward for over-staffing a contract.',
+        ru: 'Кусочно-линейная кривая успеха ([0.75,1]→[50%,90%], [1,2]→[90%,100%]) вместо плоского порога — плоский порог скрывает награду за перекомплектацию контракта.',
       },
       {
-        en: 'Contract power = base × (morale / max) rather than level × constant — scaling power by morale makes payroll mistakes directly weaken tomorrow\'s squad without a separate loyalty mechanic.',
-        ru: 'Сила контракта = base × (мораль / максимум) вместо уровень × константа — масштабирование по морали делает ошибки с зарплатой напрямую ослабляющими завтрашний отряд без отдельной механики лояльности.',
+        en: 'Contract power = base × (morale / max) rather than level × constant, so payroll mistakes directly weaken tomorrow\'s squad without a separate loyalty mechanic.',
+        ru: 'Сила контракта = base × (мораль / максимум) вместо уровень × константа — ошибки с зарплатой напрямую ослабляют завтрашний отряд без отдельной механики лояльности.',
       },
       {
-        en: 'getChanceWithPity (base 33%, growing bonus per dry day, clamped at 100%) over a fixed daily roll — pure randomness can strand the player with an empty market for many turns without the pity mechanic raising effective spawn chance.',
-        ru: 'getChanceWithPity (база 33%, растущий бонус за каждый «сухой» день, ограничен 100%) вместо фиксированного броска — чистая случайность может надолго оставить игрока с пустым рынком без механики pity, повышающей эффективный шанс спавна.',
+        en: 'Market and contract spawns use a pity mechanic (base 33%, growing bonus per dry day, clamped at 100%) over a fixed daily roll, because pure randomness can strand the player with an empty market for many consecutive turns.',
+        ru: 'Спавн рынка и контрактов через pity-механику (база 33%, растущий бонус за каждый «сухой» день, ограничен 100%) вместо фиксированного броска — чистая случайность может надолго оставить игрока с пустым рынком.',
       },
       {
-        en: 'Saves as Record<gameId, SavedGame> with structural validation on parse rather than raw pinia-plugin-persistedstate dumps — blind store persistence couples save format to Pinia internals and breaks on refactors.',
-        ru: 'Сохранения как Record<gameId, SavedGame> со структурной валидацией при парсинге вместо сырого дампа pinia-plugin-persistedstate — слепая персистенция привязывает формат сохранений к внутренностям Pinia и ломается при рефакторинге.',
+        en: 'Game saves use structural validation on parse rather than raw pinia-plugin-persistedstate dumps, because blind store persistence couples save format to Pinia internals and breaks on refactors.',
+        ru: 'Сохранения игры используют структурную валидацию при парсинге вместо сырого дампа pinia-plugin-persistedstate — слепая персистенция привязывает формат к внутренностям Pinia и ломается при рефакторинге.',
       },
       {
-        en: 'Central AppModalRoot map with defineAsyncComponent rather than inline Teleport per feature — a single modal host keeps one dialog mounted at a time and code-splits each into its own chunk without duplicating lazy-loading setup.',
-        ru: 'Центральная карта AppModalRoot с defineAsyncComponent вместо inline Teleport в каждой фиче — единый modal host держит одну модалку за раз и выносит каждый диалог в отдельный чанк без дублирования настройки lazy-loading.',
+        en: 'Modals registered in a central map with defineAsyncComponent rather than inline Teleport per feature, so one host keeps one dialog mounted at a time and code-splits each into its own chunk.',
+        ru: 'Модалки регистрируются в центральной карте через defineAsyncComponent вместо inline Teleport в каждой фиче — единый хост держит одну модалку за раз и выносит каждый диалог в отдельный чанк.',
       },
       {
-        en: 'Greedy smallest-debt-first pre-selection for partial payoff — with limited liquidity, clearing several small debts removes more mercenaries from the daily morale drain than paying one large debt that cannot be finished.',
-        ru: 'Жадный предвыбор «сначала самые маленькие долги» при частичном погашении — при ограниченной ликвидности закрытие нескольких мелких долгов снимает больше наёмников с ежедневного штрафа по морали, чем оплата одного крупного, который нельзя погасить целиком.',
+        en: 'Debt settlement pre-selects smallest debts first when the player cannot afford all at once, because with limited liquidity clearing several small debts removes more mercenaries from the daily morale drain than paying one large debt that cannot be finished.',
+        ru: 'При частичном погашении долгов предвыбираются сначала самые маленькие — при ограниченной ликвидности несколько мелких долгов снимает больше наёмников с ежедневного штрафа по морали, чем один крупный, который нельзя погасить целиком.',
       },
     ],
   },
@@ -313,32 +326,44 @@ export const projects: Project[] = [
     version: 'v1.0.0',
     decisions: [
       {
-        en: 'Migrated to Next.js App Router with static generation rather than patching the Vite SPA — App Router solves per-route metadata, static route enumeration, and error boundaries natively; staying on Vite would have required react-helmet-async without gaining file-based routing.',
-        ru: 'Миграция на Next.js App Router со статической генерацией вместо доработки Vite SPA — App Router нативно решает per-route metadata, перечисление маршрутов и error boundaries; оставаясь на Vite, пришлось бы тянуть react-helmet-async без file-based routing.',
+        en: 'Migrated to Next.js App Router rather than patching the Vite SPA, because App Router solves per-route metadata, static route enumeration, and error boundaries natively without react-helmet-async.',
+        ru: 'Миграция на Next.js App Router вместо доработки Vite SPA — App Router нативно решает per-route metadata, перечисление маршрутов и error boundaries без react-helmet-async.',
       },
       {
-        en: 'next-intl with localePrefix: "always" over client-only LanguageContext — the previous toggle stored lang in React state and rendered 100% English regardless; URL-based locale makes links bookmarkable and enables alternates.languages in metadata.',
-        ru: 'next-intl с localePrefix: "always" вместо client-only LanguageContext — предыдущий переключатель хранил lang в React state и рендерил 100% английский независимо от значения; локаль в URL делает ссылки закладко-пригодными и включает alternates.languages в metadata.',
+        en: 'next-intl with localePrefix: "always" over client-only language context, because the previous toggle stored the locale in React state and rendered 100% English regardless of its value.',
+        ru: 'next-intl с localePrefix: "always" вместо client-only переключателя языка — предыдущий вариант хранил локаль в React state и рендерил 100% английский независимо от значения.',
       },
       {
-        en: 'Inline ThemeScript IIFE in <head> before hydration plus client ThemeProvider — applying the dark class only in useEffect produces a first-paint flash and hydration mismatch warnings when server HTML and client state disagree on <html class>.',
-        ru: 'Inline ThemeScript IIFE в <head> до гидратации плюс client ThemeProvider — применение класса dark только в useEffect даёт flash при первом рендере и предупреждения о hydration mismatch при расхождении server HTML и client state на <html class>.',
+        en: 'Inline script in <head> to apply the theme before hydration, because applying the dark class only in useEffect produces a first-paint flash and hydration mismatch warnings on <html class>.',
+        ru: 'Inline-скрипт в <head> для применения темы до гидратации — применение класса dark только в useEffect даёт flash при первом рендере и предупреждения о hydration mismatch на <html class>.',
       },
       {
-        en: 'Custom markdown renderer in lib/markdown.tsx over remark/rehype or MDX — the blog needs six standard elements and content already lives as plain strings in data/; a compile step and multiple dependencies are disproportionate.',
-        ru: 'Кастомный markdown-рендерер в lib/markdown.tsx вместо remark/rehype или MDX — блогу нужны шесть стандартных элементов, а контент уже живёт plain strings в data/; compile step и несколько зависимостей несоразмерны задаче.',
+        en: 'Custom markdown renderer over remark/rehype or MDX, because the blog needs six standard elements and content already lives as plain strings in the data layer — a compile step is disproportionate.',
+        ru: 'Кастомный markdown-рендерер вместо remark/rehype или MDX — блогу нужны шесть стандартных элементов, а контент уже живёт plain strings в слое данных; compile step несоразмерен задаче.',
       },
       {
-        en: 'Server Components by default with client islands only where browser APIs are required — marking pages client-side for hooks would forfeit static HTML for content that has no client interactivity.',
-        ru: 'Server Components по умолчанию, client islands только там, где нужны browser API — перевод страниц в client ради хуков лишал бы статического HTML контент, которому не нужна client-интерактивность.',
+        en: 'Server Components by default with client islands only where browser APIs are required, because marking pages client-side for hooks would forfeit static HTML for content that has no client interactivity.',
+        ru: 'Server Components по умолчанию, client islands только там, где нужны browser API — перевод страниц в client ради хуков лишал бы статического HTML контент без client-интерактивности.',
       },
       {
-        en: 'Shared LocalizedText model ({ en, ru }) for all content with pick() as the single access point — mixing content strings into next-intl messages/ would blur the boundary between translatable UI chrome and versioned editorial content.',
-        ru: 'Общая модель LocalizedText ({ en, ru }) для всего контента с pick() как единой точкой доступа — смешивание контентных строк в next-intl messages/ размывало бы границу между переводимым UI-хромом и версионируемым контентом.',
+        en: 'Shared localized content model ({ en, ru }) for all structured data with a single access helper, because mixing content strings into next-intl catalogs would blur the boundary between translatable UI chrome and versioned editorial content.',
+        ru: 'Общая модель локализованного контента ({ en, ru }) для всех структурированных данных с единым хелпером доступа — смешивание контентных строк в каталоги next-intl размывало бы границу между переводимым UI-хромом и версионируемым контентом.',
       },
     ],
   },
 ];
+
+export function getOrderedProjects(): Project[] {
+  const order: Map<string, number> = new Map(
+    projectOrder.map((slug, index) => [slug, index]),
+  );
+
+  return [...projects].sort((a, b) => {
+    const aIndex = order.get(a.slug) ?? Number.MAX_SAFE_INTEGER;
+    const bIndex = order.get(b.slug) ?? Number.MAX_SAFE_INTEGER;
+    return aIndex - bIndex;
+  });
+}
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);

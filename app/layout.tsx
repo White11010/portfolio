@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ivanov.dev'),
+  metadataBase: new URL('https://vladislav-belyavsky.vercel.app/ru'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

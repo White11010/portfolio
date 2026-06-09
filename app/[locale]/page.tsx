@@ -5,7 +5,7 @@ import Github from '@/components/icons/Github';
 import { Link } from '@/i18n/navigation';
 import ProjectCard from '@/components/ProjectCard';
 import BlogPostCard from '@/components/BlogPostCard';
-import { projects } from '@/data/projects';
+import { getOrderedProjects } from '@/data/projects';
 import { posts } from '@/data/posts';
 import type { Locale } from '@/i18n/routing';
 
@@ -37,6 +37,7 @@ export default async function HomePage({ params }: PageProps) {
   const th = await getTranslations('home');
   const localeTyped = locale as Locale;
   const latestPosts = posts.slice(0, 3);
+  const orderedProjects = getOrderedProjects();
 
   return (
     <div>
@@ -60,13 +61,13 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="pb-12 sm:pb-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6">
           <h2 className="text-xl sm:text-2xl font-bold text-text-primary dark:text-text-primary-dark mb-6">
             {th('projectsHeading')}
           </h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {orderedProjects.map((project) => (
               <ProjectCard key={project.slug} project={project} locale={localeTyped} compact />
             ))}
           </div>

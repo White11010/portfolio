@@ -8,7 +8,7 @@ type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const stack = ['TypeScript', 'Vue', 'Nuxt', 'React', 'Node.js', 'PostgreSQL'];
+const stack = ['TypeScript', 'Vue', 'Nuxt', 'React', 'Next', 'Node.js', 'Rust'];
 
 const socials = [
   { labelKey: 'github' as const, href: 'https://github.com/white11010', icon: Github },

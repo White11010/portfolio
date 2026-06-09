@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ProjectCard from '@/components/ProjectCard';
-import { projects } from '@/data/projects';
+import { getOrderedProjects } from '@/data/projects';
 import type { Locale } from '@/i18n/routing';
 
 type PageProps = {
@@ -24,6 +24,7 @@ export default async function ProjectsPage({ params }: PageProps) {
 
   const t = await getTranslations('projects');
   const localeTyped = locale as Locale;
+  const orderedProjects = getOrderedProjects();
 
   return (
     <div className="py-12 sm:py-16">
@@ -33,7 +34,7 @@ export default async function ProjectsPage({ params }: PageProps) {
         </h1>
         <p className="mt-2 text-text-secondary dark:text-text-secondary-dark">{t('subtitle')}</p>
         <div className="mt-8 grid auto-rows-fr gap-5 sm:grid-cols-2">
-          {projects.map((project) => (
+          {orderedProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} locale={localeTyped} />
           ))}
         </div>

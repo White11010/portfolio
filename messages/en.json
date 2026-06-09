@@ -74,9 +74,9 @@
   "about": {
     "title": "Vladislav Belyavsky",
     "role": "Frontend & Fullstack Developer",
-    "bio1": "I am a developer who builds open-source tools and writes about TypeScript, software architecture, and functional programming patterns. Most of my work lives on GitHub, where I maintain a handful of libraries and side projects that I use as a laboratory for ideas I find interesting.",
-    "bio2": "My day-to-day stack revolves around TypeScript — on the frontend with React and Vue, and on the backend with Node.js and PostgreSQL. I care about developer experience, type safety, and code that is easy to delete. I also have a soft spot for browser-based games and have shipped a couple of text-based strategy experiments.",
-    "bio3": "When I am not coding, I write about the things I learn — mostly around design patterns, the intersection of functional programming and practical TypeScript, and lessons from maintaining open-source projects. I write in both English and Russian.",
+    "bio1": "Software engineer with 5+ years of commercial experience, focused on architecture, type safety, and developer experience. I build open-source tools (eslint-plugin-vue-arch, nevernullable) and treat them as a lab for ideas I later apply in production.",
+    "bio2": "My daily stack is TypeScript: frontend with React and Vue, backend with Node.js and Rust. I value code that's easy to read, test, and — when needed — delete. I can ship complex products end-to-end: from Tauri + Rust desktop apps to highload interfaces with real-time data.",
+    "bio3": "Outside of work, I write about design patterns, the intersection of functional programming and practical TypeScript, and lessons from maintaining open-source projects. I'm also developing a browser game to better understand game design and state management.",
     "stackHeading": "Stack",
     "findMeHeading": "Find me",
     "resumeHeading": "Resume",
