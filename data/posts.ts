@@ -15,7 +15,11 @@ export interface Post {
   projectSlug?: string;
 }
 
-export const posts: Post[] = [
+function sortPostsByDateDesc(items: Post[]): Post[] {
+  return [...items].sort((a, b) => b.date.localeCompare(a.date));
+}
+
+const postsData: Post[] = [
   {
     slug: 'props-watch-two-hours-left',
     title: 'Props, watch, два часа до конца рабочего дня',
@@ -77,6 +81,8 @@ export const posts: Post[] = [
     projectSlug: 'eslint-plugin-vue-arch',
   },
 ];
+
+export const posts = sortPostsByDateDesc(postsData);
 
 export const blogTags = [...new Set(posts.flatMap((post) => post.tags))].sort();
 
