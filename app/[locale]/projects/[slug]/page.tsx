@@ -11,6 +11,7 @@ import BlogPostCard from '@/components/BlogPostCard';
 import { getPostsByProject } from '@/data/posts';
 import { getProject, projects } from '@/data/projects';
 import { pick } from '@/lib/i18n';
+import { getProjectIcon } from '@/lib/project-icons';
 import type { Locale } from '@/i18n/routing';
 
 type PageProps = {
@@ -50,6 +51,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   const relatedPosts = getPostsByProject(slug);
+  const Icon = getProjectIcon(project.slug);
 
   return (
     <div className="py-12 sm:py-16">
@@ -58,8 +60,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
           {t('backLink')}
         </Link>
 
-        <h1 className="mt-4 text-2xl sm:text-3xl font-bold text-text-primary dark:text-text-primary-dark">
-          {project.emoji} {pick(project.title, localeTyped)}
+        <h1 className="mt-4 flex items-center gap-2.5 text-2xl sm:text-3xl font-bold text-text-primary dark:text-text-primary-dark">
+          <Icon size={28} className="shrink-0" aria-hidden />
+          {pick(project.title, localeTyped)}
         </h1>
 
         <div className="mt-3">

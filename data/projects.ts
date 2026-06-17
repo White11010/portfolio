@@ -4,7 +4,6 @@ export type ProjectStatus = 'released' | 'in-development';
 
 export interface Project {
   slug: string;
-  emoji: string;
   title: LocalizedText;
   description: LocalizedText;
   longDescription: LocalizedText;
@@ -39,7 +38,6 @@ export type ProjectSlug = (typeof projectOrder)[number];
 export const projects: Project[] = [
   {
     slug: 'eslint-plugin-vue-arch',
-    emoji: '🏗',
     title: { en: 'eslint-plugin-vue-arch', ru: 'eslint-plugin-vue-arch' },
     description: {
       en: 'ESLint plugin for Vue 3 / TypeScript — architectural rules that enforce explicit dependencies and predictable reactivity.',
@@ -80,7 +78,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'blindspot',
-    emoji: '🔍',
     title: { en: 'Blindspot', ru: 'Blindspot' },
     description: {
       en: 'Local-first desktop app for Lichess players — sync games, run Stockfish analysis, surface chess patterns, and compare head-to-head in Versus.',
@@ -127,7 +124,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'nevernullable',
-    emoji: '📦',
     title: { en: 'nevernullable', ru: 'nevernullable' },
     description: {
       en: 'Zero-dependency Option<T> for TypeScript — a typed alternative to null checks and optional chaining.',
@@ -177,7 +173,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'grin',
-    emoji: '📊',
     title: { en: 'GRIN', ru: 'GRIN' },
     description: {
       en: 'CLI tool for git repository analytics — timeline, contributors, and file churn in the terminal.',
@@ -226,7 +221,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'kanban-app',
-    emoji: '🗂',
     title: { en: 'Kanban App', ru: 'Kanban App' },
     description: {
       en: 'Microservices task manager — three independent services with gRPC, Kafka, and a Rust notification layer.',
@@ -260,7 +254,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'guildmaster',
-    emoji: '⚔️',
     title: { en: 'GuildMaster', ru: 'GuildMaster' },
     description: {
       en: 'Browser game about running a mercenaries\' guild — hire fighters, take contracts, and keep cash flow and morale under control.',
@@ -310,7 +303,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'portfolio',
-    emoji: '✦',
     title: { en: 'Portfolio', ru: 'Portfolio' },
     description: {
       en: 'Personal site and blog — Next.js, full EN/RU localization, SSG, and zero-CMS static content.',

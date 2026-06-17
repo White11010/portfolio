@@ -3,6 +3,7 @@ import { Link } from '@/i18n/navigation';
 import ProjectStatusBadge from '@/components/ProjectStatusBadge';
 import Tag from '@/components/Tag';
 import { pick } from '@/lib/i18n';
+import { getProjectIcon } from '@/lib/project-icons';
 import type { Project } from '@/data/projects';
 import type { Locale } from '@/i18n/routing';
 
@@ -18,11 +19,16 @@ export default async function ProjectCard({
   compact = false,
 }: ProjectCardProps) {
   const t = await getTranslations('projects');
+  const Icon = getProjectIcon(project.slug);
 
   return (
-    <Link href={`/projects/${project.slug}`} className="card group flex h-full flex-col">
+    <Link href={`/projects/${project.slug}`} className="card group flex h-full flex-col will-change-transform backface-hidden">
       <div className="mb-3 flex items-start justify-between gap-2">
-        <span className="text-2xl">{project.emoji}</span>
+        <Icon
+          size={24}
+          className="shrink-0 text-text-primary dark:text-text-primary-dark"
+          aria-hidden
+        />
         <ProjectStatusBadge
           status={project.status}
           label={t(`status.${project.status}`)}
