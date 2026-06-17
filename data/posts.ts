@@ -17,6 +17,18 @@ export interface Post {
 
 export const posts: Post[] = [
   {
+    slug: 'props-watch-two-hours-left',
+    title: 'Props, watch, два часа до конца рабочего дня',
+    excerpt: 'Передача всего объекта props в watch срабатывает при любом изменении свойства, что приводит к ненужным повторным вызовам или запутанным ручным сравнениям. Разберем, почему это происходит в системе реактивности Vue 3 и как разделение на точечные вотчеры сохраняет ваш код чистым.',
+    lang: 'ru',
+    platform: 'habr',
+    date: '2026-06-10',
+    readingTime: '3 min',
+    tags: ['TypeScript', 'Vue', 'Architecture', 'ESLint', 'Open Source'],
+    externalUrl: 'https://habr.com/ru/articles/1045941/',
+    projectSlug: 'eslint-plugin-vue-arch',
+  },
+  {
     slug: 'stop-returning-null-option-type',
     title: 'Stop Returning null: A Tiny Option<T> for TypeScript',
     excerpt:
@@ -60,7 +72,7 @@ export const posts: Post[] = [
     platform: 'medium',
     date: '2026-06-08',
     readingTime: '3 min',
-    tags: ['Vue', 'Architecture'],
+    tags: ['TypeScript', 'Vue', 'Architecture', 'ESLint', 'Open Source'],
     externalUrl: 'https://medium.com/@beliavski26/vue-reactivity-mechanics-the-cost-of-passing-the-entire-props-object-to-watch-and-automating-the-8e1afdc38073',
     projectSlug: 'eslint-plugin-vue-arch',
   },
