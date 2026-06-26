@@ -8,7 +8,7 @@ export interface Project {
   description: LocalizedText;
   longDescription: LocalizedText;
   tags: string[];
-  github: string;
+  github?: string;
   npm?: string;
   demo?: string;
   status: ProjectStatus;
@@ -340,6 +340,56 @@ export const projects: Project[] = [
       {
         en: 'Shared localized content model ({ en, ru }) for all structured data with a single access helper, because mixing content strings into next-intl catalogs would blur the boundary between translatable UI chrome and versioned editorial content.',
         ru: 'Общая модель локализованного контента ({ en, ru }) для всех структурированных данных с единым хелпером доступа — смешивание контентных строк в каталоги next-intl размывало бы границу между переводимым UI-хромом и версионируемым контентом.',
+      },
+    ],
+  },
+  {
+    slug: 'coding-quiz-bot',
+    title: { en: 'CodeQuiz', ru: 'CodeQuiz' },
+    description: {
+      en: 'PWA for frontend interview prep — configurable quizzes across JS, HTML, TypeScript, Python, and SQL with instant explanations, no sign-up required.',
+      ru: 'PWA для подготовки к frontend-собеседованиям — настраиваемые квизы по JS, HTML, TypeScript, Python и SQL с мгновенными объяснениями, без регистрации.',
+    },
+    longDescription: {
+      en: 'CodeQuiz is a mobile-first web app for technical interview preparation. Users pick direction (Frontend / Backend / QA), topics, difficulty levels, and quiz size (10 / 20 / 40), then work through multiple-choice questions with optional code snippets and explanations after each answer.\n\nThe project started as a Telegram Mini App + grammY bot with telegramId-based progress tracking and was migrated to a standalone Nuxt 3 PWA with a guest-first MVP: question history and session state live in localStorage, while the API serves stateless guest endpoints that never write to User or UserAnswer tables.\n\nThe backend is a Fastify REST API with hexagonal architecture — domain entities and ports, use-cases in application/, Prisma adapters only in infrastructure/, composition root in bootstrap.ts. Shared types and Zod API contracts live in packages/shared; questions are versioned JSON under content/questions/ and loaded into PostgreSQL via Prisma seed with validation. The monorepo also keeps the paused Telegram stack (apps/bot, apps/mini-app) for reference without building it in CI.',
+      ru: 'CodeQuiz — mobile-first веб-приложение для подготовки к техническим собеседованиям. Пользователь выбирает направление (Frontend / Backend / QA), темы, уровни сложности и размер квиза (10 / 20 / 40), затем проходит вопросы с вариантами ответа, опциональными code snippet и объяснениями после каждого ответа.\n\nПроект начинался как Telegram Mini App + grammY-бот с трекингом прогресса по telegramId и был перенесён на самостоятельное Nuxt 3 PWA с guest-first MVP: история вопросов и состояние сессии хранятся в localStorage, а API отдаёт stateless guest-эндпоинты без записи в User и UserAnswer.\n\nБэкенд — Fastify REST API с гексагональной архитектурой: сущности и порты в domain/, use-case\'ы в application/, Prisma-адаптеры только в infrastructure/, composition root в bootstrap.ts. Общие типы и Zod-контракты — в packages/shared; вопросы — версионируемый JSON в content/questions/, загружаемый в PostgreSQL через Prisma seed с валидацией. Монорепо также хранит приостановленный Telegram-стек (apps/bot, apps/mini-app) как референс без сборки в CI.',
+    },
+    tags: ['Nuxt 3', 'Fastify', 'Prisma', 'PostgreSQL', 'TypeScript', 'PWA', 'Hexagonal Architecture', 'pnpm'],
+    demo: 'https://codequiz.ru',
+    status: 'released',
+    version: 'v1.0.0',
+    decisions: [
+      {
+        en: 'Hexagonal API with ports/adapters and a single bootstrap composition root, because Prisma and Fastify must never leak into domain/ or application/ — Topic and Difficulty are defined in domain and packages/shared, never imported from @prisma/client.',
+        ru: 'Гексагональный API с портами/адаптерами и единым composition root в bootstrap.ts — Prisma и Fastify не должны проникать в domain/ и application/; Topic и Difficulty определены в domain и packages/shared, а не импортируются из @prisma/client.',
+      },
+      {
+        en: 'Migrated from Telegram Mini App + bot to Nuxt 3 PWA with a guest-first MVP over extending the grammY stack, because interview prep needs SEO, PWA install, and a URL users can open without Telegram — email/password auth is deferred to post-MVP.',
+        ru: 'Миграция с Telegram Mini App + бота на Nuxt 3 PWA с guest-first MVP вместо развития grammY-стека — подготовка к собеседованиям требует SEO, PWA и URL без Telegram; email/password auth отложен на post-MVP.',
+      },
+      {
+        en: 'Guest quiz progress tracked client-side (sessionQuestionIds, shownQuestionIds, quizHistory in localStorage) with excludeIds sent to stateless guest API endpoints, because zero-friction first visit matters more than server persistence before auth exists.',
+        ru: 'Прогресс guest-квиза на клиенте (sessionQuestionIds, shownQuestionIds, quizHistory в localStorage) с excludeIds в stateless guest API — бесшовный первый визит важнее серверной персистенции до появления auth.',
+      },
+      {
+        en: 'SafeQuestion strips correctOptionIndex from start responses; answer verification only via POST /quiz/guest/answer, because leaking the correct index in the question payload would let users cheat without calling the API.',
+        ru: 'SafeQuestion убирает correctOptionIndex из ответа start; проверка ответа только через POST /quiz/guest/answer — утечка правильного индекса в payload вопроса позволила бы читерить без вызова API.',
+      },
+      {
+        en: 'Questions as versioned JSON in content/questions/ with Zod validation at seed time over hardcoding in migrations or admin UI, because editorial content should diff in git independently of schema changes.',
+        ru: 'Вопросы как версионируемый JSON в content/questions/ с Zod-валидацией при seed вместо хардкода в миграциях или admin UI — контент должен диффиться в git независимо от изменений схемы.',
+      },
+      {
+        en: 'Tailwind CSS only, no component library, because the UI is card-based selectors and touch targets — adding Vuetify or similar would inflate the PWA bundle for screens that are mostly layout and typography.',
+        ru: 'Только Tailwind CSS, без UI-библиотеки — интерфейс на card-based селекторах и touch targets; Vuetify и аналоги раздули бы PWA-бандл для экранов, которые в основном layout и типографика.',
+      },
+      {
+        en: 'Telegram bot and mini-app paused in-repo (excluded from CI) rather than deleted, because legacy telegramId endpoints and the migration path to email auth must remain referenceable without blocking the web stack.',
+        ru: 'Telegram bot и mini-app приостановлены в репо (исключены из CI), а не удалены — legacy-эндпоинты по telegramId и путь миграции к email auth должны оставаться референсом без блокировки web-стека.',
+      },
+      {
+        en: 'Proportional topic breakdown (computeQuizBreakdown in shared, mirrored server-side) over pure random selection when multiple topics are selected, so a 20-question JS+HTML quiz does not silently skew toward whichever topic has the larger bank.',
+        ru: 'Пропорциональное распределение по темам (computeQuizBreakdown в shared, зеркалится на сервере) вместо чистого random при нескольких темах — квиз JS+HTML на 20 вопросов не смещается к теме с большим банком.',
       },
     ],
   },

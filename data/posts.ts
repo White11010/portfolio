@@ -79,7 +79,21 @@ const postsData: Post[] = [
     tags: ['TypeScript', 'Vue', 'Architecture', 'ESLint', 'Open Source'],
     externalUrl: 'https://medium.com/@beliavski26/vue-reactivity-mechanics-the-cost-of-passing-the-entire-props-object-to-watch-and-automating-the-8e1afdc38073',
     projectSlug: 'eslint-plugin-vue-arch',
+    
   },
+  {
+    slug: 'content-as-data-json-zod-prisma-seed',
+    title: 'Content as Data: JSON in Git → Zod → Prisma Seed',
+    excerpt:
+      'How I stopped reaching for a CMS and started treating quiz questions like code — JSON in Git, Zod validation in CI, Prisma seed with stable IDs and upserts so deploys don\'t wipe user progress.',
+    lang: 'en',
+    platform: 'medium',
+    date: '2026-06-25',
+    readingTime: '8 min',
+    tags: ['TypeScript', 'Prisma', 'Software Engineering', 'Developer Tools'],
+    externalUrl: 'ium.com/@beliavski26/stop-returning-null-a-tiny-option-t-for-typescript-that-actually-pulls-its-weight-3003a868a62c',
+  },
+  
 ];
 
 export const posts = sortPostsByDateDesc(postsData);

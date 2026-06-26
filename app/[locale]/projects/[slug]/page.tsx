@@ -117,26 +117,30 @@ export default async function ProjectDetailPage({ params }: PageProps) {
         </div>
 
 
-        <div className={`flex flex-wrap gap-3 ${project.image ? 'mt-8' : 'mt-10'}`}>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary"
-          >
-            <Github size={16} className="mr-2" /> {t('github')}
-          </a>
-          {project.npm && (
-            <a href={project.npm} target="_blank" rel="noopener noreferrer" className="btn-outline">
-              <Package size={16} className="mr-2" /> {t('npm')}
-            </a>
-          )}
-          {project.demo && (
-            <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-outline">
-              <ExternalLink size={16} className="mr-2" /> {t('liveDemo')}
-            </a>
-          )}
-        </div>
+        {(project.github || project.npm || project.demo) && (
+          <div className={`flex flex-wrap gap-3 ${project.image ? 'mt-8' : 'mt-10'}`}>
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary"
+              >
+                <Github size={16} className="mr-2" /> {t('github')}
+              </a>
+            )}
+            {project.npm && (
+              <a href={project.npm} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                <Package size={16} className="mr-2" /> {t('npm')}
+              </a>
+            )}
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn-outline">
+                <ExternalLink size={16} className="mr-2" /> {t('liveDemo')}
+              </a>
+            )}
+          </div>
+        )}
 
         {relatedPosts.length > 0 && (
           <div className="mt-12 pt-8 border-t border-border dark:border-border-dark">
