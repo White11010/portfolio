@@ -1,16 +1,18 @@
 import type { LucideIcon } from 'lucide-react';
 import {
   BarChart3,
+  CircleHelp,
+  HardHat,
   LayoutGrid,
   Package,
   Search,
   Sparkles,
   Swords,
-  HardHat,
 } from 'lucide-react';
 import type { ProjectSlug } from '@/data/projects';
 
 export const projectIcons: Record<ProjectSlug, LucideIcon> = {
+  'code-quiz': CircleHelp,
   'eslint-plugin-vue-arch': HardHat,
   blindspot: Search,
   nevernullable: Package,

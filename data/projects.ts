@@ -24,6 +24,7 @@ export interface Project {
 
 /** Display order for project lists (home, /projects). Edit slugs here only. */
 export const projectOrder = [
+  'code-quiz',
   'eslint-plugin-vue-arch',
   'blindspot',
   'nevernullable',
@@ -344,7 +345,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'coding-quiz-bot',
+    slug: 'code-quiz',
     title: { en: 'CodeQuiz', ru: 'CodeQuiz' },
     description: {
       en: 'PWA for frontend interview prep — configurable quizzes across JS, HTML, TypeScript, Python, and SQL with instant explanations, no sign-up required.',
