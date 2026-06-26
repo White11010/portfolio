@@ -359,6 +359,11 @@ export const projects: Project[] = [
     demo: 'https://codequiz.ru',
     status: 'released',
     version: 'v1.0.0',
+    image: {
+      src: '/projects/code-quiz.png',
+      width: 2940,
+      height: 1492,
+    },
     decisions: [
       {
         en: 'Hexagonal API with ports/adapters and a single bootstrap composition root, because Prisma and Fastify must never leak into domain/ or application/ — Topic and Difficulty are defined in domain and packages/shared, never imported from @prisma/client.',

@@ -91,7 +91,7 @@ const postsData: Post[] = [
     date: '2026-06-25',
     readingTime: '8 min',
     tags: ['TypeScript', 'Prisma', 'Software Engineering', 'Developer Tools'],
-    externalUrl: 'ium.com/@beliavski26/stop-returning-null-a-tiny-option-t-for-typescript-that-actually-pulls-its-weight-3003a868a62c',
+    externalUrl: 'https://medium.com/@beliavski26/content-as-data-json-in-git-zod-prisma-seed-2720150fd334',
   },
   
 ];
